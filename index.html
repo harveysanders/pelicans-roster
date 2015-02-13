@@ -4,7 +4,31 @@
 	<meta charset="utf-8">
 
 	<style>
-		/* CSS */
+		/*CSS*/
+	 #container {
+    		border: 0px solid black;
+    		padding: 20px;
+    		background-color: #F3F3F3;
+    		width: 300px;
+    		font-family: 'Century Gothic';
+    		font-size:14px;
+		}
+		
+		input {
+    		width: 100%;
+    		margin-bottom:10px;
+		}
+		#pointsInput {
+			width: 10%;
+			float: left;
+		}
+		#container span {
+			float:left;
+		}
+		div {
+			font-family: 'Century Gothic';
+			margin: 20px;
+		}
 	 
 	 
 	 
@@ -14,7 +38,29 @@
 
 <body>
 	<!-- HTML -->
- 
+	<div id="container">
+		
+ 		Name
+ 		<input id="nameInput"></input>
+
+ 		Position
+ 		<input id="positionInput"></input>
+ 		
+ 		<span>Total Points</span>
+ 		<input id="pointsInput"></input>
+			
+	 	<button id="addButton">add</button>
+	</div>
+	
+ 	<div id='average'></div>
+ 	
+ 	<div>
+ 		<h1>Roster</h1>
+ 			
+ 		<div id="roster">
+ 		</div>
+ 			
+ 	</div>
  
  
  
@@ -23,9 +69,52 @@
 		(function(){
 			'use strict'
 			// Javascript
-			 
-			 
-			 
+			var players, handleAdd, addPlayer, displayPlayers;
+			
+			// players is the array where we will store all of the added players
+			players = [];
+			
+			// handleAdd will be called when the add button is clicked
+			$("#addButton").click(function(){
+				handleAdd();
+			});
+			// This will call addPlayer, then it will call displayPlayers
+			handleAdd = function(){
+				var name = $('#nameInput').val();
+				var position = $('#positionInput').val();
+				var points = $('#pointsInput').val();
+				
+				addPlayer(name, position, points);
+				displayPlayers();
+				$('#nameInput').val("");
+				$('#positionInput').val("");
+				$('#pointsInput').val("");
+			};
+			
+			// addPlayer will append an object containing the passed in 
+			// parameters as a new player in the players array
+			addPlayer = function (name, position, points) {
+					var player = {};
+					player.name = name;
+					player.position = position;
+					player.points = points;
+					
+					players.push(player);
+			};
+			
+			// displayPlayers will be called every time a new player is added 
+			// This will place on the page the names of the players in the system
+			displayPlayers = function(){
+				$('#roster').empty();
+				
+				players.forEach(function(p) {
+					$('#roster').append("<div>"+p.name+"</div>");
+				});
+				
+			
+				$('#average').html('Average Points: ' + average);
+			};
+			
 			 
 		}).call();
 	</script>
