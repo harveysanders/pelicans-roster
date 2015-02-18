@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-
+	<title>Pelicans Roster</title>
 	<style>
 		/*CSS*/
 	 #container {
@@ -29,6 +29,11 @@
 			font-family: 'Century Gothic';
 			margin: 20px;
 		}
+		.checkbox {
+			padding: 5px;
+			font-size:10px;
+			
+		}
 	 
 	 
 	 
@@ -49,7 +54,11 @@
  		<span>Total Points</span>
  		<input id="pointsInput"></input>
 			
-	 	<button id="addButton">add</button>
+	 	<button id="addButton">Add</button>
+
+	 	<div class="checkbox">
+	 		<input type="checkbox" name="over200pts">Show only players with over 200 total points.</input>
+		</div>
 	</div>
 	
  	<div id='average'></div>
@@ -66,7 +75,7 @@
  
  	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 	<script> 
-		(function(){
+//		(function(){
 			'use strict'
 			// Javascript
 			var players, handleAdd, addPlayer, displayPlayers;
@@ -104,19 +113,39 @@
 			
 			// displayPlayers will be called every time a new player is added 
 			// This will place on the page the names of the players in the system
-			displayPlayers = function(){
+			displayPlayers = function(filter){
+				var averagePoints;
+				var totalPointsOfRoster = 0;
+				
+				var noFilter = function() {
+					return true;
+				};
+				//Finish function
+				var highScoreFilter = function() {
+					players.filter(function(p) {
+							
+					});
+				};
+				
 				$('#roster').empty();
 				
 				players.forEach(function(p) {
 					$('#roster').append("<div>"+p.name+"</div>");
 				});
+				console.log(totalPointsOfRoster);
 				
+				players.map(function(p) {
+					totalPointsOfRoster = totalPointsOfRoster + parseInt(p.points);
+				});
+				console.log(totalPointsOfRoster);
+				averagePoints = totalPointsOfRoster / players.length;
 			
-				$('#average').html('Average Points: ' + average);
+				$('#average').html('Average Points: ' + averagePoints);
+				
 			};
 			
 			 
-		}).call();
+//		}).call();
 	</script>
 </body>
 </html>
