@@ -128,7 +128,7 @@
 				//Finish function
 				var highScoreFilter = function() {
 					players.filter(function(p) {
-							
+						if (p.score > 200) {return true} else {return false};	
 					});
 				};
 				
