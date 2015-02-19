@@ -57,7 +57,7 @@
 	 	<button id="addButton">Add</button>
 
 	 	<div class="checkbox">
-	 		<input type="checkbox" name="over200pts">Show only players with over 200 total points.</input>
+	 		<input type="checkbox" name="over200pts" id="200ptsCheckbox">Show only players with over 200 total points.</input>
 		</div>
 	</div>
 	
@@ -86,6 +86,11 @@
 			// handleAdd will be called when the add button is clicked
 			$("#addButton").click(function(){
 				handleAdd();
+			});
+			
+			//displayPlayers called when checkbox is clicked 
+			$("#200ptsCheckbox").click(function(){
+				console.log($('#200ptsCheckbox').val());
 			});
 			// This will call addPlayer, then it will call displayPlayers
 			handleAdd = function(){
